@@ -75,23 +75,23 @@ const students = [
 ]
 
 
-
-const createStudentComponent = (name, subject, info, score) => {
-    if (score >= 60) {
+//  vvv pass in entire object rather than multiple property perameters then pull propery form object vvv //
+const createStudentComponent = (student) => {
+    if (student.score >= 60) {
        return `
         <div class="student">
-            <h1 class="xx-large passing">${name}</h1>
-            <section class="bordered dashed section--padded">${subject}</section>
-            <asideclass="pushRight">${info}</aside>
+            <h1 class="xx-large passing">${student.name}</h1>
+            <section class="bordered dashed section--padded">${student.subject}</section>
+            <asideclass="pushRight">${student.info}</aside>
         </div>
     `
     }
     
     else return `
         <div class="student">
-            <h1>${name}</h1>
-            <section>${subject}</section>
-            <aside>${info}</aside>
+            <h1>${student.name}</h1>
+            <section>${student.subject}</section>
+            <aside>${student.info}</aside>
         </div>
     `
 };
@@ -101,10 +101,7 @@ const studentContainer = document.querySelector("#container")
 for (let i = 0; i < students.length; i++) {
     const student = students[i]
     studentContainer.innerHTML += createStudentComponent(
-        student.name,
-        student.subject,
-        student.info,
-        student.score
+        student
         )
 }
 
