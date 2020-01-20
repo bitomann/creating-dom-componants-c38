@@ -74,11 +74,30 @@ const students = [
     }
 ]
 
-
+let studentStatus;
 
 const createStudentComponent = (name, subject, info, score) => {
     if (score >= 60) {
+        studentStatus = "pasing"
+    }
+    else {
+        studentStatus = "failing"
+    }
        return `
+       <div class="student">
+           <h1 class="xx-large ${studentStatusClass}">${name}</h1>
+           <section>${subject}</section>
+           <aside>${info}</aside>
+       </div>
+   `
+    };
+
+const studentContainer = document.querySelector("#container")
+
+for (const student of students) {
+    let studentComponent = ""
+    if (student.score >= 60) {
+        studentComponent = `
         <div class="student">
             <h1 class="xx-large passing">${name}</h1>
             <section class="bordered dashed section--padded">${subject}</section>
@@ -86,27 +105,29 @@ const createStudentComponent = (name, subject, info, score) => {
         </div>
     `
     }
-    
-    else return `
-        <div class="student">
-            <h1>${name}</h1>
-            <section>${subject}</section>
-            <aside>${info}</aside>
-        </div>
-    `
-};
-
-const studentContainer = document.querySelector("#container")
-
-for (let i = 0; i < students.length; i++) {
-    const student = students[i]
-    studentContainer.innerHTML += createStudentComponent(
-        student.name,
-        student.subject,
-        student.info,
-        student.score
-        )
+    // else {
+    //     studentContainer = `
+    //     <div class="student">
+    //         <h1>${name}</h1>
+    //         <section>${subject}</section>
+    //         <aside>${info}</aside>
+    //     </div>
+    // `
+    // }
 }
+
+
+
+
+// for (let i = 0; i < students.length; i++) {
+//     const student = students[i]
+//     studentContainer.innerHTML += createStudentComponent(
+//         student.name,
+//         student.subject,
+//         student.info,
+//         student.score
+//         )
+// }
 
 
 
